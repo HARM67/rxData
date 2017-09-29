@@ -24,10 +24,10 @@ std::cout << c << std::endl;
 520
 43
 ```
-> Lors d'opération il ne faut pas mélanger des donnés réactives avec des données standard. car dans ce cas les données réactive dans l'opération ne seront pas considérée comme étant réactive. Si vous souhaitez faire cela, vous pouvez utiliser la méthode subscribe ou encore, merge2, merge3 ou merge 4
+> Lors d'opérations il ne faut pas mélanger des données réactives avec des données standard. Car dans ce cas les données réactives dans l'opération ne seront pas considérées comme étant réactive. Si vous souhaitez faire cela, vous pouvez utiliser la méthode subscribe ou encore, merge2, merge3 ou merge 4.
 
 ---
-#### 2. abonnement à des données.
+#### 2. Abonnement à des données.
 ```
 rxData<float> a, b, c, d;
 a = 2;
@@ -54,7 +54,7 @@ d:15
 ```
 > - L'abonnement passe par la méthode `void observe(int key, std::function<void (T)> command)`.
 > - Le premier argument, un entier qui permettra de se désabonner grâce à la méthode `void unobserve(int id)`.
-> - Le deuxième argument est une fonction lambda qui recevra en argument la valeur. Celle ci sera automatiquement appelée lors de l'abonnement, puis à chaque fois que sa valeur sera changée.
+> - Le deuxième argument est une fonction lambda qui recevra en argument la valeur. Celle-ci sera automatiquement appelée lors de l'abonnement, puis à chaque fois que sa valeur sera changée.
 
 ---
 #### 3. Mélange de données
@@ -83,7 +83,7 @@ d:15
 7.14
 3.14
 ```
-> Les méthodes merge2, merge3 et merge4 fonctionnent de la meme manière. 
+> Les méthodes merge2, merge3 et merge4 fonctionnent de la même  manière.
 > Si une donnée réactive doit dépendre de plusieurs autres données réactives, ces méthodes sont bien pratiques.
 
 ---
@@ -110,8 +110,8 @@ return 0;
 2
 1
 ```
-> pour des opération mathématiques autre que celles de bases comme +-*/ on peut utiliser utiliser`void subscribe(void *who, std::function<void (T)> command)` pour s'abonner a une donnée réactive et `void notify(T value)` pour mettre a jours la donnée dépendante.
-> C'est ce que fait implicitement merge2, 3 et 4 ou encore les opération comme (+, -, *, /).
+> Pour des opérations mathématiques autres que celles de bases comme +-*/ on peut utiliser utiliser`void subscribe(void *who, std::function<void (T)> command)` pour s'abonner à une donnée réactive et `void notify(T value)` pour mettre a jours la donnée dépendante.
+> C'est ce que fait implicitement merge2, 3 et 4 ou encore les opérations comme (+, -, *, /).
 
 ---
 
@@ -134,9 +134,10 @@ while (a <= 3)
 1
 2
 3
-> Pour caster une donné dans un autre type de donnée :`rxData<U> &rxCast()`;
-> À noter que la variable b n'est notifiée que si sa valeur change et non pas a chaque fois qu'une de ses dépendance est notifiée
 ```
+
+> Pour caster une donné dans un autre type de donnée :`rxData<U> &rxCast()`
+> À noter que la variable "b" n'est notifiée que si sa valeur change et non pas a chaque fois qu'une de ses dépendances est notifiée
 
 #### 6. printDependance
 ```
@@ -185,3 +186,6 @@ id f:6[47.5]
 		9[47.5] +
 			6[47.5]
 ```
+
+> La méthode printDependancesReverse permet d'afficher toutes les variables réactives dont dépend une donnée réactive.
+> La méthode printDependances permet d'afficher toutes les variables réactives dépendante d'une variable.
